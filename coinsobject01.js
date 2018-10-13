@@ -11,4 +11,3 @@ var usd = {
 }
 
 
-console.log("I have six " + currencyAbbrev[5]);
