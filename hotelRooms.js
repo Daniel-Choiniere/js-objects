@@ -38,47 +38,54 @@ var rooms = {
         },
     };
     
-
-    var availableRooms = " ";
-    var room = readline.question("Welcome to the Div\'inn! What room are you interested in?");
+    
+    
+    var keys = Object.keys(rooms);
+    
+    var room = readline.question("Welcome to the Div\'inn! What room are you interested in from the " + keys + " rooms?");
     room = room.toLowerCase();
     
      if (room == "single") {
         rooms.single.available = false;
     }
-    
     if (room == "double") {
         rooms.double.available = false;
     }
-    
     if (room == "single") {
         rooms.king.available = false;
     }
-    
     if (room == "single") {
         rooms.family.available = false;
     }
     
     console.log("The " + room + " is a great choice!")
     var roomTax = ((rooms[room].price * .07) + rooms[room].price)
-    console.log("The " + room + " costs $" + roomTax + " with tax")
+    console.log("The " + room + " costs $" + roomTax + " with tax.")
     
     var yesNo = readline.question("Do you need to rent another room? Yes, or No")
     yesNo = yesNo.toLowerCase();
     
     if (yesNo === "yes") {
         var nextRoom = readline.question("Ok, great what room would you like?")
+        nextRoom = nextRoom.toLowerCase();
+        if (rooms[nextRoom].available === false) {
+            console.log("I'm sorry the " + nextRoom + " is not currently available")
+        } else {
+            console.log("The " + nextRoom + " is also a great choice!")
+            var nextRoomTax = ((rooms[nextRoom].price * .07) + rooms[nextRoom].price)
+        console.log("The " + nextRoom + " costs $" + nextRoomTax + " with tax. Enjoy your stay!")
+        };
+    } else if (yesNo === "no") {
+        var nextRoom = 
+        console.log("Ok, Enjoy your stay!")
     }
     
-    if (rooms[nextRoom].available === false) {
-        console.log("I'm sorry the " + nextRoom + " is not currently available")
+  
+    if (nextRoomTax) {
+        console.log("Your total cost today is $" + (roomTax + nextRoomTax))
     } else {
-        console.log("The " + nextRoom + " is a great choice!")
-        var nextRoomTax = ((rooms[nextRoom].price * .07) + rooms[nextRoom].price)
-        console.log("The " + nextRoom + " costs $" + nextRoomTax + " with tax")
-    };
-    
-    console.log("Your total cost today is $" + (roomTax + nextRoomTax))
+        console.log("Your total cost today is $" + (roomTax))
+    }
     
     
    
